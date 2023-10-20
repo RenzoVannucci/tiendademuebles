@@ -1,0 +1,568 @@
+html {
+    box-sizing: border-box; /*para que cuando añadmaos un padding o margin no afecte la altura o el ancho del elemento, que mida lo que le decimos*/
+    font-size: 62.5%; /*hak para que un 1rem sea igual a 10px ejemplo: 3rem = 30px*/
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.6rem; /*le tengo que poner 1.6rem al tamaño de fuente de todo el body para que la base sean 16px como si fuera el valor por defecto*/
+    line-height: 2; /*metemos un interlineado en el body*/
+}
+/*Globales*/
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin: 0 0 2rem 0; /*todos los heading tienen margin por defecto, se lo podemos remover*/
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+@media (min-width: 768px) { 
+    h1 {
+        font-size: 5rem;
+    }
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+@media (min-width: 768px) { 
+    h2 {
+        font-size: 4rem;
+    }
+}
+
+h3 {
+    font-size: 2.4rem;
+}
+
+@media (min-width: 768px) { 
+    h3 {
+        font-size: 3rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto; /*para centrar, auto centra y lo que sobra lo deja a los costados*/
+}
+
+img {
+    /*este global sirve para que las imagenes sean responsive*/
+    max-width: 100%; /* hak:si el div mide 300px la imagen solo va a tomar el espacio del div (padre) y se va a adaptar segun el espacio disponible
+    , lo meto como global para todas las imagenes*/
+    display: block; /*al ponerle max-width, cubre todo el ancho pero no todo el alto, abajo sobra entre la imagen y el elemento(en este caso el enlace a),
+    si le pongo display: block, cubre todo el alto hasta el elemento(porque es en bloque)*/
+}
+
+.btn {
+    background-color: #8cbc00;
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    padding: 1rem;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    border: none; /*le pongo esto para agregarle la clase al boton de submit, ya que por defecto los input de tipo submit llevan borde*/
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #769c02;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) { 
+    .btn {
+        width: auto; /*va a medir lo que si contenido requiera, al tamaño del contenedor, su margin y su padding*/
+    }
+}
+
+
+/*Utilidades*/
+.text-center {
+    text-align: center;
+}
+
+
+
+@media (min-width: 768px) { /*la pongo en un mq para que solo aplique en tamaños desde 768px, y por debajo ocupe todo el ancho del contenedor, y que aplique el display block que por defecto le pusimos a los botones*/
+    .max-width-30 {
+        max-width: 30rem; /*maximo vaa medir 300px, no menos, hasta 300px*/
+    }
+}
+/*Header y navegacion*/
+
+.nombre-sitio {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.nombre-sitio span {
+    color: #037bc0;
+}
+
+.contenedor-navegacion {
+    border-top: 1px solid #e1e1e1;
+}
+
+.nav-principal {
+   padding: 2rem 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1.5rem;
+   
+}
+
+@media (min-width: 768px) { 
+    .nav-principal {
+        justify-content:space-between;
+        flex-direction: row;
+     }
+}
+
+.hero {
+    background-image: url(../img/principal.jpg);
+    background-repeat: no-repeat; /*no se repite la imagen*/
+    background-size: cover; /*ocupa todo el espacio disponible*/
+    background-position: center center; /*puedo modificar la posicion horizontalmente y verticalmente con px o %* o con left, right, bottom top, el que mas se usa es center center*/
+    height: 25rem; /*necesito ponerle un height a la imagen para que se muestre si el div esta vacio*/
+
+}
+
+@media (min-width: 768px) { 
+    .hero {
+        height: 55rem; /*necesito ponerle un height a la imagen para que se muestre si el div esta vacio*/
+    }
+}
+/*categorias*/
+.categorias {
+   padding-top: 5rem; /*separacion arriba, tambien podria usar margin*/
+}
+
+.categoria {
+    margin-bottom: 2rem;
+}
+
+.categoria img {
+    width: 100%; /*le digo toma todo el espacio disponible del div que la contiene, si el div mide 500 que mida 500 la imagen*/
+}
+
+@media (min-width: 768px) { 
+    .categoria {
+        margin-bottom: 0;
+    }
+       
+}
+    
+.categoria a {
+    text-align: center;
+    display: block; /*Le pongo display block para que el enlace ocupe todo el ancho dentro del contenedor*/
+    padding: 2rem;
+    font-size: 2rem;
+}
+
+.categoria a:hover {
+    background-color: #037bc0;
+    color: #fff;
+    border-bottom-right-radius: 1rem; 
+}
+
+
+
+@media (min-width: 768px) { 
+    .listado-categorias {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem; 
+    }
+}
+
+
+
+/*Formas de escribir clases, modulos, bem, y SMACSS*/
+
+/*bloque nosotros*/
+
+.sobre-nosotros {
+    background-image: linear-gradient(to bottom, transparent 50%,  #037bc0 50%, #037bc0 100%), url(../img/nosotros.jpg);
+    background-position: center/*el fondo azuk*/, top left;/*la posicion de la imagen, la muevo adentro del contenedor*/
+    /*margin-top: 5rem ;
+   /* padding: 10rem 0; /*para que la imagen crezca hacia adentro*/
+    background-repeat: no-repeat;
+    background-size: 100%/*gradient, le digo que lo muestre el 100% que ocupe todo el espacio*/, 70rem /*imagen*/;
+}
+
+@media (min-width: 768px) { 
+    .sobre-nosotros {
+       /* background-image: linear-gradient(to right, transparent 50%,  #037bc0 50%, #037bc0 100%), url(../img/nosotros.jpg);
+        background-position: left, center;
+        padding: 10rem 0; /*para que la imagen crezca hacia adentro*/
+       /* background-size: 100%/*gradient, le digo que lo muestre el 100% que ocupe todo el espacio*//*, 120rem /*imagen*//**/
+        background-image: linear-gradient( to right, transparent 50%, #037bc0 50%, #037bc0 100% ), url(../img/nosotros.jpg);
+        background-position: left center ;
+        padding: 10rem 0;
+        background-size: 100%, 120rem;
+    }
+    
+}
+
+/*Como posicionar la seccion de nosotros con grid*/
+
+/*
+    .sobre-nosotros-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*me deja el contenido del lado izquierdo, y lo quiero en el derecho*/
+    /*column-gap: 4rem; /*separacion del lado izquierdo*/
+/*}
+
+.texto-nosotros {
+    grid-column: 2 / 3; /*le digo que va a ir de la linea 2 a la linea 3 para ponerlo del lado derecho*/
+    /*color: #e1e1e1;
+/*}*/ 
+
+/*Como posicionar la seccion de nosotros con flexbox*/
+
+.sobre-nosotros-grid {
+    /*display: flex; lo cambio porqie para hacerlo responsive es mas facil con grid*/
+    display: grid;
+    /*justify-content: flex-end; /*lo posiciono a la derecha*/
+    grid-template-rows: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) { 
+    .sobre-nosotros-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: unset; /*me queda mucho espacio porque hereda el 2, 1fr de esta forma le digo que no lo aplique*/
+        column-gap: 10rem;
+    }
+
+}
+
+.texto-nosotros {
+    /*flex-basis: 50%  ; /*lo hacemos mas pequeño porque si ocupa todo, flexbox no lo posiciona a la derecha del contenedor*/
+    grid-row: 2/3;
+    color: #fff; 
+    padding: 5rem;
+    
+}
+
+@media (min-width: 768px) { 
+    .texto-nosotros {
+        /*flex-basis: 50%  ; /*lo hacemos mas pequeño porque si ocupa todo, flexbox no lo posiciona a la derecha del contenedor*/
+        grid-column: 2/3;
+    }
+}
+
+/*Listado de prpductos*/
+
+.contenido-principal {
+    padding-top: 5rem;
+}
+
+@media (min-width: 768px) { 
+    .listado-productos {
+        display:grid;
+        grid-template-columns: repeat(6, 1fr);
+        /*column-gap: 2rem;
+        row-gap: 2rem;*/
+        gap: 2rem; /*separa en row y en column*/
+    }
+    
+    .producto:nth-child(1) {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    
+    .producto:nth-child(1) img {
+        height: 47rem;
+        width: 100%;
+        object-fit: cover;/*le digo que llene todo el espacio disponible pero que se mantenga dentro del contenido, de la caja, no revasa las medidas que le hemos definido en el grid que es 3fr*/   
+        
+    }
+      
+    .producto:nth-child(2) img, 
+    .producto:nth-child(3) img {
+        height: 30rem;
+        width: 100%;
+        object-fit: cover;   
+        
+    }
+    
+    
+    .producto:nth-child(2) {
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+    
+    .producto:nth-child(3) {
+        grid-column-start: 4;
+        grid-column-end: 7;
+    }
+    
+    .producto:nth-child(4) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    
+    .producto:nth-child(5) {
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+    
+    .producto:nth-child(6) {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+}
+    
+    
+    
+.producto {
+    background-color: #037bc0;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) { 
+    .producto {
+        margin-bottom: 0; /*le elimino el margin extra heredado por el margin bottom*/
+    }
+}
+
+.producto:last-of-type { /*le agrega un margin extra al ultimo porque el margin bottom que le agrego a todos los productos, entonces selecciono el ultimo se lo saco*/
+    margin-bottom: 0;
+}
+.texto-producto {
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+}
+    
+    
+.texto-producto h3 {
+    margin: 0;
+}
+    
+.texto-producto p {
+    margin: 0 0 0.5rem 0;
+}
+    
+    
+    
+.texto-producto .precio {
+    font-size: 2.8rem;
+    font-weight: 900;
+}
+
+
+
+
+/*Footer*/
+
+.site-footer {
+    border-top: 1px solid #e1e1e1;
+    margin-top: 5rem;
+    padding-top: 5rem;
+}
+
+.nav-footer {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.nav-footer a {
+    display: block;
+}
+
+
+
+.site-footer h3 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+
+@media (min-width: 768px) { 
+    .nav-footer  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 0;
+    
+    }
+
+    .grid-footer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}    
+    
+
+.copyright  {
+   margin-top: 5rem;
+   text-align: center;
+}
+
+/*pagina nosotros*/
+
+.contenido-nosotros {
+    display: grid;
+   /* grid-template-columns: 1fr 1fr;*/ /*puedo dejar este y despues aplicarle media queries para hacerlo responsive*/
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); /*hace que el contenido se acomode automaticamente, ajusta las columna par ocupar todo el espacio disponible, en este caso hasta que el contenido no llegue a 250px se le aplica 1 fr, cuando llegue acomoda todo en auto fit(hace que las columnas ocupen todo el espacio disponible sin dejar espacio restante)*/
+    column-gap: 4rem;
+}
+
+.informacion-nosotros {
+    display: flex;
+    flex-direction: column; /*le pongo flex-direction:column para poder modificar verticalmente el contenido*/
+    justify-content: center; /*como tiene flex direction column, justify content los alinea verticalmente, es row, horizontalmente*/
+    padding: 3rem; /*en algunos mobil device, el texto se va mucho a las orillas, con un padiding le damos mas espacio de relleno*/
+}
+
+@media (min-width: 768px) { 
+    .informacion-nosotros {
+        display: flex;
+        flex-direction: column; /*le pongo flex-direction:column para poder modificar verticalmente el contenido*/
+        justify-content: center; /*como tiene flex direction column, justify content los alinea verticalmente, es row, horizontalmente*/
+        padding: 0; /*en algunos mobil device, el texto se va mucho a las orillas, con un padiding le damos mas espacio de relleno*/
+    }
+}
+
+/*Blog*/
+
+@media (min-width: 768px) { 
+    .contenedor-blog {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 4rem;
+    }
+}
+
+.entrada {
+    border-bottom: 2px solid #e1e1e1;
+    margin-bottom: 2rem;
+    padding-bottom: 4rem;
+    /*padding: 2rem 2rem 4rem 2rem; /*para que el contenido en un dispositivo mobil no se vaya hacia los extremos le agrego un padding, para darle relleno*/
+}
+
+.entrada h2 {
+    text-align: center;
+}
+
+@media (min-width: 768px) { 
+    .entrada h2 {
+        text-align: left;
+    }
+}
+
+.contenido-blog {
+    padding: 2rem;
+}
+
+.entrada:last-of-type { /*selecciona el ultimo tipo y aplica reglas*/
+    border: none;
+} 
+
+@media (min-width: 768px) { 
+    .entrada-meta {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+
+.entrada-meta p {
+    font-weight: 900;
+}
+
+.entrada-meta span {
+    color: #037bc0;
+}
+
+/*entrada blog*/
+
+.contenido-entrada-blog {
+    width: 60rem;
+   margin: 0 auto;
+}
+
+/*galeria*/
+
+.galeria {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*en mobil creo 2 columnas iguales*/
+    gap: 2rem;
+}
+
+@media (min-width: 768px) { 
+    .galeria {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+.galeria img {
+    height: 40rem;
+    width: 40rem;
+    object-fit: cover ;
+}
+
+
+/*Formulario*/
+.formulario {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.formulario fieldset {
+    border: 1px solid black;
+    margin-bottom: 2rem;
+}
+
+.formulario legend {
+    background-color: #005495;
+    width: 100%; /*para que el legend abarque todo el espacio disponible del contenedor formulario, que seria 60rem*/
+    padding: 1rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 2rem ;
+}
+
+.campo label {
+    flex-basis: 10rem;
+}
+
+.campo input:not([type="radio"]), /*le aplicamos estos estilos a todos los inputs salvo al input tipo radio*/
+textarea, select { /*uso selector de atributos para darlee stilo a los input*/
+    flex: 1; /* factor de crecimiento hago que los inputs ocupen todo el ancho disponible del contenedor campos*/
+    border: 1px solid #e1e1e1;
+    padding: 1rem;
+}
